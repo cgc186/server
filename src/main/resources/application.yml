@@ -1,0 +1,42 @@
+spring:
+
+    thymeleaf:
+        cache: false
+        prefix: classpath:/templates/
+        suffix: .html
+        encoding: UTF-8
+        mode: HTML
+    datasource:
+        url: jdbc:mysql://localhost:3306/test?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=utf-8&allowPublicKeyRetrieval=true
+        username: root
+        password: admin
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        type: com.alibaba.druid.pool.DruidDataSource
+        initialSize: 5
+        minidle: 5
+        maxActive: 20 #最大访问数
+        maxWait: 60000 #最长等待时间
+        timeBetweenEvictionRunsMillis: 60000
+        poolPreparedStatements: true
+        filters: stat, wall, log4j #过滤器
+        maxPoolPreparedStatementPerConnectionSize: 20 #每个连接池准备语句数
+        useGlobalDataSourceState: true
+        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+    servlet:
+        multipart:
+            enabled: true
+            max-file-size: 3MB
+            max-request-size: 3MB
+
+server:
+    port: 8080
+    address: localhost
+    servlet:
+        session:
+            timeout: 600
+
+mybatis-plus:
+    mapper-locations: classpath*:/dao/*.xml
+    type-aliases-package: com.example.server.entity
+
